@@ -25,3 +25,14 @@ $log(n)$, a partir de $poly(n)$ o barren plateau surgirá de novo.
 Entre estes dois limites existe uma região de transição onde o gradiente vai desparecendo de forma 
 polinomial gradualmente até ser exponencial.
 
+## Ragone & Bakalov et al. (2023)
+
+Neste [artigo](https://arxiv.org/pdf/2309.09342v2.pdf) foi introduzida uma framework que une todos os resultados
+apresentados até à data. As principais razões que originam barren plateaus são:
+
+- Expressividade excessiva do circuito (circuitos profundos)
+- Estados iniciais demasiado entangled
+- Funções de custo globais
+- Canais de ruido
+
+
