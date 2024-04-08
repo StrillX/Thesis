@@ -1,0 +1,98 @@
+\chapter{Introduction}
+
+\newacronym{pqc}{PQC}{Parameterized Quantum Circuit}
+\newacronym{nisq}{NISQ}{Noisy Intermediate-Scale Quantum}
+
+\section{Context and Motivation}
+
+In the quantum, as in the classical domain, software is a critical factor in the reliability of computer systems. Actually, if quantum computing is quickly coming of age, with potential groundbreaking impacts on many different fields, such benefits come at a price: quantum programming is hard and finding new quantum algorithms is far from straightforward. Current methods and tools for quantum software development are still highly fragmentary and fundamentally ‘low-level’. Reasoning directly with quantum gates is as limited as assembling logical gates in classical algorithm design. It sweeps under the carpet all key ingredients of a mature software engineering discipline: compositionality, abstraction, refinement, high-order and property-enforcing type schemes
+
+Thus, the need for suitable formal techniques in quantum software development is even bigger than in classical computation. A lack of reliable approaches to quantum computer programming may put at risk the expected quantum advantage of the new hardware.
+
+This dissertation will explore a graphical language, with a precise mathematical semantics, for reasoning about diagrams representing quantum processes (actually, able to model arbitrary linear maps between qubits) --- the ZX Calculus. ZX-diagrams come equipped with a set of useful rewrite rules with which one may reason about quantum theory, as well as optimize and validate quantum programs and protocols.
+
+\section{Objectives}
+
+The main purpose for this thesis is to use ZX-calculus to model quantum algorithms, more specifically is the barren plateau problem in the context of quantum machine learning algorithms. The problem was first presented by \cite{McClean_2018}. It appears throughout the quantum machine learning field.
+
+
+Along with modelling quantum algorithms, this work is also expected to establish and verify algorithmic properties of these algorithms.
+
+\section{State of the art}
+
+
+\subsection{History of ZX-Calculus}
+
+ZX-Calculus is an extension to categorical quantum mechanics. From a mathematical standpoint the basic behavior can be captured by a dagger symmetric monoidal category. Much like ZX-Calculus, categorical quantum mechanics can be fully represented by string diagrams, diagrams originally proposed by Roger Penrose in 1971 as a way to reason about multi linear functions or tensors.
+
+ Therefore, ZX-Calculus is a diagrammatic alternative to linear algebra when it comes to reason about quantum gates. It was first introduced in 2008 by Bob Coecke and Ross Duncan, although it wouldn't be until 2017 that its completeness would be proved.
+
+Although ZX-Calculus allows us to reason in a graphical way about linear maps between qubits, it is only one of the languages used for that purpose. Alongside with ZX-Calculus, ZW-Calculus was also being developed, which provides a smooth way to describe the W-state:
+
+\begin{equation}
+    \ket{W} = \frac{1}{\sqrt{3}}(\ket{001} + \ket{010} + \ket{100})
+\end{equation}
+
+ZW was the first of these graphical languages to have a complete set of rules. The earliest completeness results for ZX-Calculus were based on this ZW-Calculus.
+
+More recently a new graphical language has been developed to describe in a more natural manner quantum circuits that involve Toffoli gates. It is named the ZH-Calculus, as it generalizes the Hadamard gate from ZX-Calculus as a generator. It is, like its counterparts, sound and complete.
+
+The ZX-Calculus has a variety of different applications such as the optimization of quantum circuits, which was explored by \cite{Fagan_2019}. Modern quantum computers are still far from being optimal, as they are severely limited by a lot of factors, but mainly they are limited by the coherence time of the qubits. Therefore performing extensive computations becomes almost impossible, as the qubits may enter a state of decoherence before the computation is complete, rendering the result unusable. To combat this phenomenon it is necessary to perform as many computations as possible in the shortest window of time. Optimization of quantum circuits is a step in this direction
+
+In classical computers, two programs can have the same result without having the same number of computations. The same applies to quantum programs. As long as two programs have the same resulting tensor, they will perform the same computation. Thus, it is only a matter of choosing the one that does it with the least amount of gates. The ZX-Calculus allows us to simplify and reduce circuits to their minimal form, although this is not as trivial as one might think, as \cite{https://doi.org/10.4230/lipics.icalp.2022.119} showed. 
+
+Until \cite{Duncan2020graphtheoretic} the circuit extraction aspect of ZX-diagrams was poorly understood. Articulated with \cite{kissinger2020pyzx}, a tool for automated reasoning with large scale ZX-diagrams was developed. Actually, dealing with large scale ZX-diagrams becomes quickly unreasonable to handle by hand. Although there are tools that are similar to \textit{PyZX} such as \textit{Quantomatic}, they aren't as efficient as \textit{PyZX} since the former was designed with the intent of circuit optimization, and as of today is the staple for circuit optimization.
+
+
+
+\subsection{Context of ZX-calculus}
+
+
+
+Currently the presence of ZX-calculus transcends quantum circuit reasoning and circuit optimization and has been applied to many other areas in quantum computing, such as: quantum error correction, measurement-based quantum computing, quantum natural language processing, among many others.
+
+More specifically ZX-calculus has been used by \cite{Zhao_2021} to analyze the barren plateau phenomenon in training quantum neural networks, and extend the barren plateaus theorem. This is exactly the context for this dissertation.
+
+
+
+
+\subsection{Quantum Computing and Quantum Machine Learning}
+
+Although computer science as a discipline can be traced back to Charles Babbage and Ada Lovelace, it wouldn't be until \cite{Turing1936-TUROCN} that we would have a formalized understanding of what computer science is. 
+
+In tandem the field of study of quantum mechanics was making significant progress. These two fields would be considered considered completely distinct for the following years. That is until \cite{Benioff1980TheCA} introduced the quantum Turing Machine, which uses the theory of quantum mechanics to describe a simple computer. This was the first time these two fields of study had converged. With physicists encountering difficulties simulating quantum systems, \cite{Feynman1982-FEYSPW} suggested that to efficiently simulate quantum systems one had to use hardware that is built with these intrinsic properties.
+
+The first quantum algorithm was proposed by \cite{Deutsch1985QuantumTT}, which was later on expanded by \cite{Deutsch1992RapidSO}. They concluded that for a specific class of problems there would be a quantum computation that would solve the problem with an exponential speedup over any classical computation. Although these results had no practical application, they are fundamental for both \cite{365700} and \cite{grover1996fast} algorithms both of which attracted a lot of attention to the field of quantum computing.
+
+With these promising results research quickly expanded into a lot of the computer science areas. This is also true of the machine learning area, \cite{Biamonte_2017} postulated that quantum computers would surpass their classical counterpart on machine learning tasks. As of right now, in contrast to machine learning which is its own field of research and has economical significance, quantum machine learning is still a mainly theoretical field of study.
+
+\subsection{The barren plateau phenomenon}
+
+The barren plateau phenomenon was first introduced by \cite{McClean_2018}. It is a phenomenon that appears when training a quantum machine learning algorithm. The optimization gradient quickly disappears, turning the domain of the problem flat, which makes it impossible for the algorithm to find the downward slope.
+This phenomenon can appear in two different ways:
+
+\begin{itemize}
+    \item Noise Free
+    \item Noise Induced
+\end{itemize}
+
+The former of these surges in \acrshort{pqc}s that have a large amount of layers and are initialized with random parameters. This leads to the variance of the optimization gradient vanishing exponentially with the number of qubits, making it impossible to train these \acrshort{pqc}s.
+
+The latter occurs in \acrshort{nisq} computers. Since the qubits are prone to quantum decoherence as they are susceptible to the environment they are, the gradient itself vanishes exponentially with the number of qubits, that is the slope itself becomes more and more shallower.
+
+\section{Dissertation Structure}
+
+This dissertation will be structured in the following manner.
+
+\begin{itemize}
+    \item Background
+
+    \item Modelling algorithms in ZX
+
+
+    \item Establishing algorithmic properties
+
+
+    \item Conclusions
+
+\end{itemize}

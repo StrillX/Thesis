@@ -1,0 +1,288 @@
+\chapter{Background}
+
+\section{Introduction to ZX}
+\subsection{Introduction}
+ZX-diagrams are composed of \textit{spiders}, i.e. green and red nodes with an associated real number that represents the phase of that specific \textit{spider}, ranging between $[0,2\pi[$ , (generally, this phase is omitted when zero).
+
+Besides the set of rewrite rules, ZX-calculus has two overarching rules, those being:
+
+\begin{itemize}
+    \item Only connectivity matters
+    \item Everything is still true if you swap red and green
+\end{itemize}
+
+That being said:
+
+\begin{equation}
+    \tikzfig{cnot-equiv}
+    \label{cnot-equiv}
+\end{equation}
+
+
+are all equivalent. 
+
+
+In fact since we can represent the Z \textit{spider} (green) as having one input and two outputs, or two inputs and one output (the same can be said for the X spider), this means that we are able to have a vertical wire without having any ambiguity, since it can be represented in any of the two ways.
+
+This means that we can represent multi-qubit gates in ZX-diagrams. Actually, the gate described in (\ref{cnot-equiv}) the representation of a CNOT gate as a ZX-diagram.
+
+All quantum gates have an equivalent representation as a ZX-diagram. A few of those are the following:
+
+\begin{equation}
+    \tikzfig{circuit-equivalences}
+    \label{circuit-equivalences}
+\end{equation}
+%%%
+%
+% Diagrama com as rewrite rules do ZX
+%
+%%%
+Therefore transforming a quantum circuit into a ZX-diagram is as simple as replacing the gates with their ZX counterpart.
+
+
+\subsection{Rewrite Rules}
+
+The abstraction of ZX-calculus comes from the powerful set of rewrite rules it provides. The basic rewrite rules are the following:
+
+\begin{itemize}
+    \item Spider Fusion
+
+    \begin{equation}
+        \tikzfig{spider-equiv}
+        \label{fusion}
+    \end{equation}
+
+    \item Identity Removal
+
+    \begin{equation}
+        \tikzfig{identity-rem}
+        \label{id-rem}
+    \end{equation}
+
+    \item Hadamard cancellation
+
+    \begin{equation}
+        \tikzfig{hadamard-cancel}
+        \label{had-can}
+    \end{equation}
+
+    \item $\pi$ commutation
+
+    \begin{equation}
+        \tikzfig{pi-comm}
+        \label{pi-comm}
+    \end{equation}
+
+    \item State copy
+
+    \begin{equation}
+        \tikzfig{state-copy}
+        \label{state-copy}
+    \end{equation}
+
+    \item Color change
+
+    \begin{equation}
+        \tikzfig{color-change}
+        \label{color-change}
+    \end{equation}
+
+    \item Strong complementarity
+
+    \begin{equation}
+        \tikzfig{bi-alg}
+        \label{bi-alg}
+    \end{equation}
+
+    \item Hopf
+
+    \begin{equation}
+        \tikzfig{hopf}
+        \label{hopf}
+    \end{equation}
+
+    
+\end{itemize}
+
+There are other rewrite rules in ZX-calculus. Although they are all derived from the rules above. One of those derived rules is the following \textit{hadamard pushing}, which is derived from \ref{color-change} and \ref{had-can}.
+
+
+
+With these representations and the rewrite rules we can already infer other results, such as the representation of CZ gates, with just 2 rules: \textit{hadamard pushing} and \textit{hadamard cancellation}.
+
+\begin{align}
+    \begin{quantikz}
+        & & \ctrl{1} & & \\
+        &\gate{H} & \targ{} & \gate{H} &
+    \end{quantikz}
+\end{align}
+
+First we need to represent the circuit as a ZX-diagram, yielding.
+
+\begin{equation}
+    \tikzfig{cz}
+\end{equation}
+
+Applying the rules described above we get the following:
+
+
+\begin{equation}
+    \tikzfig{cz-derivation}
+\end{equation}
+
+ZX-calculus has a set of rewrite rules that, with a valid ZX-diagram, lead to a new ZX-diagram equivalent to the one we started with.
+However it is not guaranteed that the resulting ZX-diagram is a valid circuit. Actually, every circuit has a valid ZX counterpart, but not every ZX-diagram has a direct circuit equivalent.
+The reason for this is that ZX-calculus allows us for an expressiveness that quantum circuits are unable to reproduce.
+
+Let's take the following ZX-diagram for example:
+
+\begin{equation}
+  \tikzfig{ghz}
+  \label{ghz-zx}
+\end{equation}
+
+This ZX-diagram does not have a direct mapping to a circuit. But it does represent three qubits entangled in the Z-basis, that is, these three qubits are in the GHZ (Greenberger–Horne–Zeilinger) state.
+
+\begin{equation}
+    \ket{GHZ} = \frac{{}\ket{000} + \ket{111}}{\sqrt{2}}
+\end{equation}
+
+Let's now take a look the circuit that implements the GHZ state.
+
+
+
+\begin{align}
+    \begin{quantikz}
+        \lstick{\ket{0}} & &\targ{}  & & & \\
+        \lstick{\ket{0}} &\gate{H}  &\ctrl{-1}  & \ctrl{1}  & & \\
+        \lstick{\ket{0}} & & & \targ{} & &
+    \end{quantikz}
+    \label{ghz-circuit}
+\end{align}
+
+Since ZX-calculus is sound and complete \cite{lmcs:6532} this circuit and the ZX-diagram (\ref{ghz-zx}) above must represent the same tensor.
+
+Using the rewrite rules (\ref{circuit-equivalences}) above we can represent the circuit that implements the GHZ state (\ref{ghz-circuit}) as the following ZX-diagram:
+
+
+\begin{equation}
+  \tikzfig{ghz-zx}
+  \label{ghz-zx-diagram}
+\end{equation}
+
+Using a few of the rewrite rules from the ZX-calculus (more specifically the fusion, color changing and identity removal rules), we get the following diagram.
+
+\begin{equation}
+    \resizebox{0.8\textwidth}{!}{%
+    \tikzfig{ghz2-zx}
+    }%
+    \label{ghz-simp-zx-diagram}
+\end{equation}
+
+Thus, as a first advantage of ZX-calculus, it allows us to have a simplified notation to represent and reason about quantum circuits.
+
+In truth one of the biggest advantages of reasoning with ZX-diagrams instead of circuits is that a lot of equalities that one has to be aware when reasoning with circuits are just given to us as \textit{free properties}. But what does that mean exactly?
+
+For example, an equality one has to be aware when reasoning with circuits is that gates with a Z-phase commute with the control of a CNOT gate. This becomes trivial when dealing with ZX-diagrams.
+
+
+\begin{equation}
+    \resizebox{0.8\textwidth}{!}{%
+        \tikzfig{color-commutation}
+    }%
+\end{equation}
+
+That is because green \textit{spiders} commute through one another, and because of the second overarching rule of ZX-calculus (\textit{Everything is still true if you swap red and green}). The same applies to red \textit{spiders}. This subtle rule is able to abstract a lot of equalities.
+
+\section{Circuit Rewriting}
+\subsection{Bernstein-Vazirani}
+
+ZX-calculus can be used for rewriting or even simplifying quantum circuits. Let us look at some exmaples. The following circuit implements the Bernstein-Vazirani 3 qubit circuit. This algorithm tries to learn an encoded binary string in a function. For this specific example the binary string is $s = 101$.
+
+
+
+\begin{equation}
+    \begin{quantikz}
+        & \gate{H} &  & \ctrl{3}    & & \gate{H} & \meter{}&\\
+        & \gate{H} &  &             & & \gate{H} & \meter{}&\\
+        & \gate{H} &  &    & \ctrl{1} & \gate{H} & \meter{}&\\
+        & \gate{H} & \gate{Z}  & \targ{} &\targ{} & & &
+    \end{quantikz}
+\end{equation}
+
+Although ZX-calculus won't be able to simplify this circuit much further, as it already is quite simple, we can infer an equivalent circuit that utilizes CZ gates instead of CNOT gates. 
+
+First we need to represent the circuit as a ZX-diagram. Using the equivalences established in \ref{circuit-equivalences} this is quite trivial.
+
+\begin{equation}
+    \tikzfig{vazirani}
+    \label{vazirani}
+\end{equation}
+
+In the following diagrams the edges with Hadamards gates have been exchanged for dotted blue lines. There also have been applied 2 rules between the diagrams; \textit{spider fusion} \ref{fusion} and \textit{hadamard cancellation} \ref{had-can}.
+
+\begin{equation}
+    \tikzfig{vazirani2}
+    \label{vazirani2}
+\end{equation}
+
+As a first step we apply the \textit{color change} rule \ref{color-change}. Then we \textit{unfuse the spiders} \ref{fusion} and apply a final \textit{color change} \ref{color-change} to reduce the number of hadamard gates in the resulting circuit.
+
+Again using the equivalences from \ref{circuit-equivalences} we get the following circuit.
+
+\begin{equation}
+    \begin{quantikz}
+        & \gate{H} & \ctrl{3}    & & \gate{H} & \meter{}&\\
+        & \gate{H} &             & & \gate{H} & \meter{}&\\
+        & \gate{H} &  &   \ctrl{1} & \gate{H}& \meter{}&\\
+        & \gate{X}  & \control{} & \control{} &\gate{H} & &
+    \end{quantikz}
+\end{equation}
+
+In fact if we compare both tensor products resulting from the circuits we will see that both circuits represent the exact same tensor.
+
+The rules applied when reasoning with the ZX-diagram were chosen with the exact purpose of resembling a circuit, so the circuit extraction could be a simple task.
+
+\subsection{Quantum Teleportation}
+
+There are a lot of different implementations for quantum teleportation, but they all follow the same principle: There is a quantum state that we want to send to another qubit. For that we need an entangled pair of qubits that will act as a quantum channel. Finally, some corrections will need to be sent over a classical channel.
+
+That could be represented by the following ZX-diagram.
+
+\begin{equation}
+    \tikzfig{teleportation}
+    \label{teleportation}
+\end{equation}
+
+Here we have an entangled pair of qubits denoted by the curved wire, and the measurements denoted the X-spiders on the top two qubits. These measurements will then be applied to the destination qubit in order to guarantee the state remains the same.
+
+It is important to note that the measurements will collapse the quantum state resulting in the state $\ket{0}$ or $\ket{1}$. 
+
+This preserves the no-cloning theorem as the state is destroyed in the qubit it originates from, but this result will also aid us in the following proof, through the \textit{identity removal} rule \ref{id-rem}.
+
+This is due to the phases of the \textit{spiders} in the ZX-diagram being a multiple of $2\pi$.
+That allows us to make the following reasoning:
+
+\begin{equation}
+    \resizebox{0.8\textwidth}{!}{%
+        \tikzfig{teleportation-proof}
+    }%
+    \label{teleportation-proof}
+\end{equation}
+
+
+As a first step we perform a \textit{color change} \ref{color-change} followed by two \textit{spider fusions} \ref{fusion}. In the following step no rewrite rule was applied, the diagram was simply bent. Afterwards we perform back to back \textit{spider fusion} \ref{fusion} and \textit{identity removal} \ref{id-rem}.
+
+This is one example of the powerful abstractions we can make with ZX-calculus. The result is more intuitive than its circuit counterpart, as we can literally visualize the wire bending the destination qubit becoming the original state.
+
+
+\subsection{PyZX}
+
+Reasoning with ZX-diagrams quickly becomes difficult,as one has to deal by hand with huge diagram, as the circuits grow in depth. A number of tools like \textit{PyZX} are capable of assisting us when it comes to circuit optimization.
+
+As \cite{kissinger2020pyzx} stated, \textit{PyZX} is capable of simplifying ZX-diagrams that contain thousands of vertices in a few seconds. Due to the nature of ZX-calculus \textit{PyZX} is best suited to deal with Clifford circuits as well with phase gates. This makes it the ideal tool to deal with quantum machine learning algorithms, as they are mostly composed of rotations on the Z-axis.
+
+Although ZX-calculus is very versatile, it cannot directly reason with Toffoli and CCZ gates, making \textit{PyZX} not as efficient in dealing with circuits that heavily rely on these types of gates.
+
+
+

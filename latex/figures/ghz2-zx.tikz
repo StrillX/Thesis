@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=X dot] (1) at (0, 0) {};
+		\node [style=hadamard] (3) at (2, 0) {};
+		\node [style=X-spider] (4) at (4, 0) {};
+		\node [style=Z dot] (5) at (4, 0) {};
+		\node [style=X dot] (6) at (4, 2) {};
+		\node [style=X dot] (7) at (6, -2) {};
+		\node [style=none] (8) at (8, -2) {};
+		\node [style=none] (9) at (8, 0) {};
+		\node [style=none] (10) at (8, 2) {};
+		\node [style=none] (11) at (10, 0) {};
+		\node [style=none] (12) at (10, 0) {$=$};
+		\node [style=none] (13) at (10, 1) {};
+		\node [style=none] (14) at (10, 1) {};
+		\node [style=none] (15) at (10, 1) {(c, f)};
+		\node [style=X-spider] (21) at (14, 0) {};
+		\node [style=Z dot] (22) at (14, 0) {};
+		\node [style=X dot] (23) at (14, 2) {};
+		\node [style=X dot] (24) at (14, -2) {};
+		\node [style=none] (25) at (16, -2) {};
+		\node [style=none] (26) at (16, 0) {};
+		\node [style=none] (27) at (16, 2) {};
+		\node [style=Z dot] (28) at (12, 0) {};
+		\node [style=none] (29) at (18, 0) {};
+		\node [style=none] (30) at (18, 0) {};
+		\node [style=none] (31) at (18, 0) {};
+		\node [style=none] (32) at (18, 0) {$=$};
+		\node [style=none] (33) at (18, 1) {};
+		\node [style=none] (34) at (18, 1) {(id, f)};
+		\node [style=X-spider] (35) at (20, 0) {};
+		\node [style=Z dot] (36) at (20, 0) {};
+		\node [style=none] (39) at (22, -2) {};
+		\node [style=none] (40) at (22, 0) {};
+		\node [style=none] (41) at (22, 2) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (5) to (7);
+		\draw (5) to (9.center);
+		\draw (7) to (8.center);
+		\draw (6) to (10.center);
+		\draw (1) to (3);
+		\draw (3) to (4);
+		\draw (4) to (6);
+		\draw (5) to (4);
+		\draw (22) to (24);
+		\draw (22) to (26.center);
+		\draw (24) to (25.center);
+		\draw (23) to (27.center);
+		\draw (21) to (23);
+		\draw (22) to (21);
+		\draw (28) to (22);
+		\draw (36) to (40.center);
+		\draw (36) to (35);
+		\draw [bend left=45] (36) to (41.center);
+		\draw [bend right=45] (36) to (39.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

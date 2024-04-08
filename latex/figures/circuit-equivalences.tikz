@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=gate] (0) at (-4, 3) {X};
+		\node [style=none] (1) at (-3, 3) {};
+		\node [style=none] (2) at (-3, 3) {$\rightarrow$};
+		\node [style=X phase dot] (3) at (-2, 3) {};
+		\node [style=X phase dot] (4) at (-2, 3) {$\pi$};
+		\node [style=gate] (5) at (2, 3) {Z};
+		\node [style=cnot ctrl] (6) at (8, 1.5) {};
+		\node [style=cnot targ] (7) at (8, 0.5) {};
+		\node [style=Z phase dot] (8) at (4, 3) {$\pi$};
+		\node [style=X dot] (10) at (10, 0.5) {};
+		\node [style=Z dot] (11) at (10, 1.5) {};
+		\node [style=none] (12) at (3, 3) {$\rightarrow$};
+		\node [style=none] (13) at (9, 1) {$\rightarrow$};
+		\node [style=gate] (14) at (8, 3) {H};
+		\node [style=gate] (15) at (-4, 1) {S};
+		\node [style=gate] (16) at (2, 1) {T};
+		\node [style=Z phase dot] (17) at (-2, 1) {$\frac{\pi}{2}$};
+		\node [style=Z phase dot] (18) at (4, 1) {$\frac{\pi}{4}$};
+		\node [style=hadamard] (19) at (10, 3) {};
+		\node [style=none] (20) at (9, 3) {$\rightarrow$};
+		\node [style=none] (21) at (-3, 1) {$\rightarrow$};
+		\node [style=none] (22) at (3, 1) {$\rightarrow$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (6) to (7);
+		\draw (11) to (10);
+	\end{pgfonlayer}
+\end{tikzpicture}

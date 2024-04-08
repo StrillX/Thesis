@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{dissertation}
+\makeglossaries
+\makeindex
+
+
+\logo{EE}{School of Engineering}{}
+\logoB{EE}{School of Engineering}{}
+
+
+
+\author{Bruno Filipe Jardim Machado}
+
+\titleA{Analyzing quantum learning protocols with ZX}
+
+
+\masters{Master’s Dissertation in Informatics Engineering}
+\area{Formal Methods}
+\supervisor{Luís Soares Barbosa}
+
+
+\bibpunct[,]{(}{)}{;}{a}{,}{,}
+\begin{document}
+\setlength{\parindent}{0em}
+
+%-- Covers
+\input{covers/Covers}
+
+%-- Document setup
+\newgeometry{right=25mm, left=25mm, top=25mm, bottom=25mm}
+\pagenumbering{roman}
+
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{1.5em}
+
+%-- Preamble
+\input{preamble/Copyright}
+%\input{preamble/Acknowledgements}
+\input{preamble/StatementofIntegrity}
+%\input{preamble/Abstract}
+
+\phantomsection
+\tableofcontents
+
+\cleardoublepage
+\listoffigures
+
+% List of tables
+\renewcommand*{\listtablename}{List of Tables}
+\listoftables
+\clearpage
+
+% Acronyms
+\printglossary[type=\acronymtype,nonumberlist, title={Acronyms}]
+
+% Glossary
+\printglossary[title={Glossary}, nonumberlist]
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+%-- Dissertation 
+%\part{Introductory material}
+
+\input{chapters/Introduction}
+\input{chapters/Background}
+\input{chapters/WorkPlan}
+\input{chapters/Modelling}
+\input{chapters/Properties}
+\input{chapters/Conclusion}
+
+
+
+\renewcommand{\baselinestretch}{1}
+\bibliographystyle{plainnat}
+\bibliography{dissertation}
+\printindex
+
+\appendix
+\renewcommand\chaptername{Appendix}
+
+%\part{Appendices}
+
+%\input{appendices/SupportWork}
+%\input{appendices/DetailsOfResults}
+%\input{appendices/Listings}
+%\input{appendices/Tooling}
+%
+\input{covers/BackCover}
+
+\end{document}
