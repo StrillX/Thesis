@@ -35,4 +35,13 @@ apresentados até à data. As principais razões que originam barren plateaus s�
 - Funções de custo globais
 - Canais de ruido
 
+## Cerezo et al. (2023)
+### Does provable absence of barren plateaus imply classical simulability?
 
+O próprio nome do artigo explica o conteúdo.
+
+Caso seja de facto este o caso, QML não tem futuro no que toca a PQC's.
+Terão de ser exploradas outras alternativas.
+Possivelmente QCNN.
+
+Nota: VQE treinadas não aparentam ter barren plateaus, segundo o professor LPS
