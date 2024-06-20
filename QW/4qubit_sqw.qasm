@@ -1,0 +1,67 @@
+OPENQASM 2.0;
+include "qelib1.inc";
+gate cccx a, b, c, d {
+  h d;
+  cu1(-pi/4) c, d;
+  h d;
+  cx c, a;
+  h d;
+  cu1(pi/4) a, d;
+  h d;
+  cx c, a;
+  h d;
+  cu1(-pi/4) a, d;
+  h d;
+  cx a, b;
+  h d;
+  cu1(pi/4) b, d;
+  h d;
+  cx c, b;
+  h d;
+  cu1(-pi/4) b, d;
+  h d;
+  cx a, b;
+  h d;
+  cu1(pi/4) b, d;
+  h d;
+  cx c, b;
+  h d;
+  cu1(-pi/4) b, d;
+  h d;
+}
+gate step a, b, c, d {
+  rx(2*pi/3) a;
+  cccx a, b, c, d;
+  ccx a, b, c;
+  cx a, b;
+  x c;
+  x a;
+  x b;
+  rx(2*pi/3) a;
+  x a;
+  cccx a, b, c, d;
+  x c;
+  ccx a, b, c;
+  x b;
+  cx a, b;
+}
+
+qreg q[4];
+creg c[4];
+x q[3];
+barrier q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
+step q[0], q[1], q[2], q[3];
