@@ -50,7 +50,7 @@
 \tikzstyle{box edge}=[-, dashed, dash pattern=on 2pt off 0.5pt, thick, draw={rgb,255: red,203; green,192; blue,225}]
 \tikzstyle{brace edge}=[-, tikzit draw=blue, decorate, decoration={brace,amplitude=1mm,raise=-1mm}]
 \tikzstyle{diredge}=[->]
-\tikzstyle{double edge}=[-, double, shorten <=-1mm, shorten >=-1mm, double distance=2pt]
+\tikzstyle{double edge}=[-, double, shorten <=-1mm, shorten >=-1mm, double distance=1pt]
 \tikzstyle{gray edge}=[-, {gray!60!white}]
 \tikzstyle{pointer edge}=[->, very thick, gray]
 \tikzstyle{boldedge}=[-, line width=1.6pt, shorten <=-0.17mm, shorten >=-0.17mm]
