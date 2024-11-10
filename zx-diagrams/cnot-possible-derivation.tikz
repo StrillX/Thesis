@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-2, 2) {};
+		\node [style=none] (1) at (4, 2) {};
+		\node [style=none] (2) at (4, 0) {};
+		\node [style=X phase dot] (3) at (2, 0) {$m_x$};
+		\node [style=X phase dot] (4) at (2, -2) {$m_x$};
+		\node [style=Z dot] (5) at (0, 0) {};
+		\node [style=Z dot] (6) at (0, -2) {};
+		\node [style=Z dot] (7) at (0, 2) {};
+		\node [style=hadamard] (8) at (0, 1) {};
+		\node [style=hadamard] (9) at (0, -1) {};
+		\node [style=none] (10) at (-2, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (7);
+		\draw (7) to (8);
+		\draw (5) to (8);
+		\draw (5) to (9);
+		\draw (9) to (6);
+		\draw (6) to (4);
+		\draw (5) to (3);
+		\draw (3) to (2.center);
+		\draw (7) to (1.center);
+		\draw (10.center) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}
